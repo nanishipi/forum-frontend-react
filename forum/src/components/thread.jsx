@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import SubThread from './subThread';
+import SubThreads from './subThreads';
+
 // STYLES
 import "../components/thread.css";
 
@@ -38,7 +39,7 @@ export default function Thread(props) {
             <img className="threadImage" src={props.imagelink} alt="threadImage"></img>
             <h2 className="threadTitle">{props.title}</h2>
         </div>
-        <div style={{ display: isVisible ? 'block' : 'none' }} className="subThreadsContainer">
+        <div style={{ display: isVisible ? 'block' : 'none' }} className="subThreadsMainContainer">
             <div>
                 <h3>Create subthread</h3>
                 <form>
@@ -61,8 +62,8 @@ export default function Thread(props) {
             <div>
                 <h2 className="subThreadsTitle">Sub-Threads</h2>
             </div>
-            <div className="nestedThreadContainer">
-                <SubThread title={props.title} imagelink={props.imagelink}></SubThread>
+            <div>
+                <SubThreads></SubThreads>
             </div>
         </div>
     </>)

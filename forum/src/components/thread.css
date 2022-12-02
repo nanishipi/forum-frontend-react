@@ -21,7 +21,7 @@
     margin: 1rem;
 }
 
-.subThreadsContainer {
+.subThreadsMainContainer {
     margin-left: 5%;
     margin-right: 5%;
     background-color: lightcyan;
@@ -89,11 +89,12 @@
     display: flex;
     align-items: center;
     margin-top: 5%;
+    width: 100%;
 }
 
 .subThreadImage {
-    height: 75px;
-    width: 75px;
+    height: 125px;
+    width: 125px;
     object-fit: cover;
     border-radius: 10px;
 }
@@ -102,15 +103,34 @@
     margin-left: 1rem;
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-}
-
 .subThreadBody {
     margin-left: 1rem;
 }
 
 .subThreadsTitle {
     text-align: center;
+}
+
+.subThreadTitle {
+    margin-left: 1rem;
+}
+
+.subThreadCard {
+    background-color:  white;
+    padding: 1.1rem;
+    border-radius: 10px;
+    margin: 1rem;
+    display: flex;
+    border: solid 2px violet;
+}
+
+.subThreadsContainer {
+    padding: 20px;
+    margin: 1rem;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    line-height: 1px;
 }
