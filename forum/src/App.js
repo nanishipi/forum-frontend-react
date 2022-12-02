@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react'
+import Thread from './components/thread';
 
 function App() {
+  const [reservations, setReservations] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/reservations")
+      .then((res) => res.json())
+      .then((data) => setReservations(data));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="pageTitle">Threads</h1>
+      <Thread title="Cars" imagelink="https://imagescdn.dealercarsearch.com/DealerImages/12507/saved/2f2f0937.jpg"></Thread>
+      <Thread title="Cats" imagelink="https://i.kym-cdn.com/entries/icons/mobile/000/026/489/crying.jpg"></Thread>
     </div>
   );
 }
