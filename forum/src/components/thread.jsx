@@ -6,17 +6,40 @@ import "../components/thread.css";
 
 export default function Thread(props) {
     const [isVisible, setIsVisible] = useState(false);
+    const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('');
+    const [body, setBody] = useState('');
+    const [imageLink, setImageLink] = useState('');
 
     const onThreadClickHandler = () => {
         setIsVisible(current => !current)
     }
 
-    const onSubmitHandler = () => {
+    const handleTitleChange = event => {
+        setTitle(event.target.value);
+    }
+
+    const handleCategoryChange = event => {
+        setCategory(event.target.value);
+    }
+
+    const handleBodyChange = event => {
+        setBody(event.target.value);
+    }
+
+    const handleImageLinkChange = event => {
+        setImageLink(event.target.value);
+    }
+
+    const onSubmitHandler = async () => {
         // Using Fetch API
-        fetch('/myserver.endpoint', {
+        await fetch('http://localhost:8080/subthreads', {
             method: 'POST',
             body: JSON.stringify({
-                // Add parameters here
+                "title": title,
+                "category": category,
+                "body": body,
+                "imageLink": imageLink
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -30,7 +53,6 @@ export default function Thread(props) {
             .catch((err) => {
                 console.log(err.message);
             });
-
         console.log("Submited")
     }
 
@@ -44,18 +66,18 @@ export default function Thread(props) {
                 <h3>Create subthread</h3>
                 <form>
                     <label htmlFor="postTitle">Title</label><br></br>
-                    <input type="text" id="postTitle" required></input><br></br><br></br>
+                    <input onChange={handleTitleChange} type="text" id="postTitle" required></input><br></br><br></br>
                     <label htmlFor="postCategory">Category</label><br></br>
-                    <select name="origins" id="origins" required>
-                        <option value="select" disabled selected>Select a Category</option>
+                    <select onChange={handleCategoryChange} name="categories" id="categories" required>
+                        <option value="select" defaultValue disabled>Select a Category</option>
                         <option value="doubt">{props.title} Doubt</option>
                         <option value="suggestion">{props.title} Suggestion</option>
                         <option value="clarification">{props.title} Clarification</option>
                     </select><br></br><br></br>
                     <label htmlFor="postBody">Body</label><br></br>
-                    <textarea type="text" id="postBody"></textarea><br></br><br></br>
+                    <textarea onChange={handleBodyChange} type="text" id="postBody"></textarea><br></br><br></br>
                     <label htmlFor="postImage">Image Link</label><br></br>
-                    <input type="text" id="postImage"></input><br></br><br></br>
+                    <input onChange={handleImageLinkChange} type="text" id="postImage"></input><br></br><br></br>
                     <button onClick={onSubmitHandler} className="submitBtn" type="submit" value="submit">Submit</button>
                 </form>
             </div>
